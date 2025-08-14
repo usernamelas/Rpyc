@@ -13,7 +13,7 @@ jobs:
           
       - name: Fix Variables and Syntax
         run: |
-          # Ganti semua _ver_0_ menjadi [fname]
+          # Ganti semua __var_0 __— menjadi [fname]
           find . -name "*.rpy" -exec sed -i 's/_ver_0_/[fname]/g' {} \;
           
           # Perbaikan spasi di parameter textbutton
