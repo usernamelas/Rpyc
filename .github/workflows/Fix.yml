@@ -1,32 +1,28 @@
-name: Fix Syntax and Variables
+name: Fix Scripts in udah_mod
 on: push
 
 jobs:
-  fix-syntax:
+  fix-scripts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install Tools
-        run: |
-          sudo apt-get install -y sed
-          
       - name: Fix Variables and Syntax
         run: |
-          # Ganti semua __var_0 __— menjadi [fname] udah_mod/
-          find udah_mod -name "*.rpy" -exec sed -i 's/_ver_0_/[fname]/g' {} \;
+          # 1. Ganti pola variabel
+          find udah_mod -name "*.rpy" -exec sed -i 's/__var_0 __—/[fname] —/g' {} \;
           
-          # Perbaikan spasi di parameter textbutton
-          sed -i 's/\(textbutton "[^"]*"\) \([a-z]\)/\1 \2/g' udah_mod/*.rpy
-          sed -i 's/\(action [^ ]*\)\([a-z]\)/\1 \2/g' udah_mod/*.rpy
+          # 2. Perbaiki spasi textbutton
+          sed -i 's/\(textbutton "[^"]*"\)\([a-zA-Z(]\)/\1 \2/g' udah_mod/*.rpy
+          sed -i 's/\(action [^ ]*\)\([a-zA-Z(]\)/\1 \2/g' udah_mod/*.rpy
           
-          # Standardisasi textbutton (opsional)
-          sed -i '/textbutton/s/style "\([^"]*\)" text_style "\([^"]*\)"/style="\1" text_style="\2"/g' game/*.rpy
+          # 3. Standardisasi parameter (HANYA di udah_mod)
+          sed -i '/textbutton/s/style "\([^"]*\)" text_style "\([^"]*\)"/style="\1" text_style="\2"/g' udah_mod/*.rpy
           
       - name: Commit Changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add udah_mod/
-          git commit -m "Fixed variables and syntax" || echo "No changes to commit"
+          git commit -m "Fixed variables and spacing in udah_mod" || echo "No changes"
           git push
