@@ -1,0 +1,17 @@
+{
+  "start_time": "2025-08-14T06:27:47.607913",
+  "file_input": "x-script_nts.rpy",
+  "file_output": "x-script_nts_id.rpy",
+  "total_lines": 2904,
+  "translated": 684,
+  "skipped": [
+    {
+      "time": "2025-08-14 06:30:16",
+      "text": "\u2026",
+      "reason": "Teks sistem",
+      "line": 177
+    }
+  ],
+  "error": 0,
+  "end_time": "2025-08-14T07:09:07.454850"
+}
