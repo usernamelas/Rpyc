@@ -13,12 +13,12 @@ jobs:
           
       - name: Fix Variables and Syntax
         run: |
-          # Ganti semua __var_0 __— menjadi [fname]
-          find . -name "*.rpy" -exec sed -i 's/_ver_0_/[fname]/g' {} \;
+          # Ganti semua __var_0 __— menjadi [fname] udah_mod/
+          find udah_mod -name "*.rpy" -exec sed -i 's/_ver_0_/[fname]/g' {} \;
           
           # Perbaikan spasi di parameter textbutton
-          sed -i 's/\(textbutton "[^"]*"\) \([a-z]\)/\1 \2/g' game/*.rpy
-          sed -i 's/\(action [^ ]*\)\([a-z]\)/\1 \2/g' game/*.rpy
+          sed -i 's/\(textbutton "[^"]*"\) \([a-z]\)/\1 \2/g' udah_mod/*.rpy
+          sed -i 's/\(action [^ ]*\)\([a-z]\)/\1 \2/g' udah_mod/*.rpy
           
           # Standardisasi textbutton (opsional)
           sed -i '/textbutton/s/style "\([^"]*\)" text_style "\([^"]*\)"/style="\1" text_style="\2"/g' game/*.rpy
@@ -27,6 +27,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add .
+          git add udah_mod/
           git commit -m "Fixed variables and syntax" || echo "No changes to commit"
           git push
