@@ -2582,7 +2582,7 @@ label negotiation_newhome:
 
     scene nhm48 with dissolve
 
-    lr "Baiklah, __var_0 __— tetapi untuk penurunan harga semacam itu, saya akan membutuhkan * "pembayaran" pertama saya sekarang."
+    lr "Baiklah, __var_0 __— tetapi untuk penurunan harga semacam itu, saya akan membutuhkan "pembayaran" *pertama* saya sekarang."
 
     scene nhm52 with dissolve
 
@@ -2894,8 +2894,7 @@ screen custom_menu(prior_choice):
         text "Apa yang harus saya lakukan sekarang?" style "cool_text" xalign 0.5
 
 
-        textbutton "Melanjutkan" action Jump("tt_ct1") gaya"cool_button"text_style"cool_button_text" sensitive (prior_choice != 2)
-
+        textbutton "Melanjutkan" action Jump("tt_ct1") style "cool_button" text_style "cool_button_text" sensitive (prior_choice != 2)
 
         textbutton "Berhenti" action Jump("tt_st1") gaya"cool_button"text_style"cool_button_text"
 
