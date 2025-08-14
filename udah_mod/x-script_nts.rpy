@@ -2899,5 +2899,5 @@ screen custom_menu(prior_choice):
         textbutton "Berhenti" action Jump("tt_st1") style "cool_button"text_style"cool_button_text"
 
 
-        textbutton "Dorong lebih jauh" action Jump("tt_ps1") gaya"cool_button"text_style"cool_button_text" sensitive (prior_choice != 1)
+        textbutton "Dorong lebih jauh" action Jump("tt_ps1") style "cool_button"text_style"cool_button_text" sensitive (prior_choice != 1)
 # Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
