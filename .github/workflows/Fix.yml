@@ -1,0 +1,32 @@
+name: Fix Syntax and Variables
+on: push
+
+jobs:
+  fix-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Tools
+        run: |
+          sudo apt-get install -y sed
+          
+      - name: Fix Variables and Syntax
+        run: |
+          # Ganti semua _ver_0_ menjadi [fname]
+          find . -name "*.rpy" -exec sed -i 's/_ver_0_/[fname]/g' {} \;
+          
+          # Perbaikan spasi di parameter textbutton
+          sed -i 's/\(textbutton "[^"]*"\) \([a-z]\)/\1 \2/g' game/*.rpy
+          sed -i 's/\(action [^ ]*\)\([a-z]\)/\1 \2/g' game/*.rpy
+          
+          # Standardisasi textbutton (opsional)
+          sed -i '/textbutton/s/style "\([^"]*\)" text_style "\([^"]*\)"/style="\1" text_style="\2"/g' game/*.rpy
+          
+      - name: Commit Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Fixed variables and syntax" || echo "No changes to commit"
+          git push
